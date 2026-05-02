@@ -11,7 +11,7 @@ load_dotenv()
 
 st.set_page_config(page_title="Ассистент РТУ МИРЭА", page_icon="🎓")
 st.title("🎓 Ассистент приёмной комиссии РТУ МИРЭА")
-st.caption("Задайте вопрос о поступлении в 2026 году. Бот отвечает строго по правилам приёма.")
+st.caption("Задайте вопрос о поступлении в 2026 году. Я отвечаю строго по официальным правилам приёма и перечню вступительных испытаний.")
 
 api_key = os.getenv("OPENAI_API_KEY") or st.secrets["OPENAI_API_KEY"]
 client = OpenAI(api_key=api_key)
