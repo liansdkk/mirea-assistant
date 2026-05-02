@@ -38,6 +38,14 @@ def load_vectorstore():
         chunks = text_splitter.split_documents(documents)
         all_chunks.extend(chunks)
 
+    rules_file = os.path.join(DATA_PATH, "rules.txt")
+    if os.path.exists(rules_file):
+        from langchain_community.document_loaders import TextLoader
+        txt_loader = TextLoader(rules_file, encoding="utf-8")
+        txt_docs = txt_loader.load()
+        txt_chunks = text_splitter.split_documents(txt_docs)
+        all_chunks.extend(txt_chunks)
+
     vectorstore = FAISS.from_documents(all_chunks, embeddings)
     vectorstore.save_local("faiss_index")
     return vectorstore
