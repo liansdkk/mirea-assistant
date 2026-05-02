@@ -38,7 +38,7 @@ def load_vectorstore():
         chunks = text_splitter.split_documents(documents)
         all_chunks.extend(chunks)
 
-    rules_file = os.path.join(DATA_PATH, "rules.txt")
+    rules_file = "rules.txt"
     if os.path.exists(rules_file):
         from langchain_community.document_loaders import TextLoader
         txt_loader = TextLoader(rules_file, encoding="utf-8")
