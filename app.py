@@ -14,7 +14,7 @@ st.set_page_config(page_title="Ассистент РТУ МИРЭА", page_icon=
 st.title("🎓 Ассистент приёмной комиссии РТУ МИРЭА")
 st.caption("Задайте вопрос о поступлении в 2026 году. Бот отвечает строго по правилам приёма.")
 
-# Подключаем базу знаний (один раз при запуске)
+# Подключаем базу знаний
 @st.cache_resource
 def load_vectorstore():
     embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
@@ -42,7 +42,7 @@ if prompt := st.chat_input("Ваш вопрос..."):
 
     # Ищем контекст в базе знаний
     with st.spinner("Ищу информацию в правилах приёма..."):
-        docs = vectorstore.similarity_search(prompt, k=3)
+        docs = vectorstore.similarity_search(prompt, k=5)
         context = "\n\n".join([doc.page_content for doc in docs])
 
     # Формируем запрос к OpenAI
